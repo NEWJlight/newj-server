@@ -41,3 +41,9 @@ jobs:
         with:
           files: 'build/test-results/test/TEST-*.xml'
 
+      - name: If the test fails, register a Check comment in the failed code line
+        uses: mikepenz/action-junit-report@v3
+        if: failure()
+        with:
+          report_paths: 'build/test-results/test/TEST-*.xml'
+          token: ${{ github.token }}
